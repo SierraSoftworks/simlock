@@ -1,0 +1,8 @@
+#!/bin/sh -e
+echo "Begining Post Install setup for SIMLock"
+if [ ! -h /usr/bin/simlock]
+then ln -s /opt/simlock/simlock /usr/bin/simlock
+fi
+chmod +x /opt/simlock/simlock
+simlock -d
+echo "Post Install setup complete"
