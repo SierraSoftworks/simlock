@@ -1,35 +1,7 @@
-simlockd (0.3.0) stable; urgency=low
+simlock (0.4.0) stable; urgency=low
 
-  * If no SIM card is present the phone will now always be locked
-  * Added console commands including "clear" and "show" to allow basic management
-  * Notifications are now shown to indicate activity by the daemon
-  * Made sure that IMSI numbers do not contain non-printable characters or whitespace
-  * Installation generates required symlinks automatically now and sets executable permissions
+  * Fixed an issue when running the post install script on certain devices which could cause installation to fail
+    This is an attempted fix and may not solve the problem.
+  * Fixed an issue with an incorrect call to "link" rather than "ln"
 
- -- Benjamin Pannell <contact@sierrasoftworks.com> Sun, 19 Jun 2011 10:20:15 +0200
-
-simlockd (0.2.0) stable; urgency=low
-
-  * Fixed a bug that caused SIMLockD to never exit if the IMEI was valid
-  * Made the Allowed IMSI database's location static
-  * Made the daemon start on bootup
-  * Daemon will not be launched until /opt is mounted
-  * Added an icon to the deb package
-  * Made simlockd wait for 10 seconds before locking the device on startup
-  * Made simlockd only run once, on startup
-
- -- Benjamin Pannell <contact@sierrasoftworks.com> Sun, 05 Jun 2011 19:28:00 +0200
-
-simlockd (0.1.0) stable; urgency=low
-
-  * Fixed problems with locking of the phone
-  * Phone will now enter offline mode when locked to prevent SSH attacks
-  * When the phone is unlocked after an automatic lock it will now add the IMSI to the list of allowed ones
-
- -- Benjamin Pannell <contact@sierrasoftworks.com> Sun, 05 Jun 2011 15:47:00 +0200
-
-simlockd (0.0.1) unstable; urgency=low
-
-  * Initial Release.
-
- -- Benjamin Pannell <contact@sierrasoftworks.com>  Sun, 05 Jun 2011 13:02:33 +0200
+ -- Benjamin Pannell <contact@sierrasoftworks.com>  Mon, 20 Jun 2011 15:24:33 +0200

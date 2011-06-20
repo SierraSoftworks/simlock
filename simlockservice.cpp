@@ -21,7 +21,7 @@ void SIMLockService::Initialize()
     LockInterface = new QDBusInterface("com.nokia.system_ui","/com/nokia/system_ui/request","com.nokia.system_ui.request", QDBusConnection::systemBus(), this);
     //LockInterface = new QDBusInterface(MCE_SERVICE,MCE_REQUEST_PATH,MCE_REQUEST_IF, QDBusConnection::systemBus(),this);
 
-    LockInterface->connection().connect(MCE_SERVICE,MCE_SIGNAL_PATH, MCE_SIGNAL_IF, MCE_DEVLOCK_MODE_SIG,this,SLOT(DeviceLockModeChanged(QString)));
+    LockInterface->connection().connect("com.nokia.mce","/com/nokia/mce/signal", "com.nokia.mce.signal", "devicelock_mode_ind",this,SLOT(DeviceLockModeChanged(QString)));
 
     if(!SIMInterface->isValid())
 	qDebug() << "SIMInterface unavailable";
@@ -85,7 +85,7 @@ void SIMLockService::MakeOffline()
 {
 
     ///*
-    LockInterface->asyncCall(MCE_DEVICE_MODE_CHANGE_REQ,MCE_FLIGHT_MODE);
+    LockInterface->asyncCall("req_device_mode_change","flight");
     //*/
 }
 
@@ -93,7 +93,7 @@ void SIMLockService::MakeOnline()
 {
 
     ///*
-    LockInterface->asyncCall(MCE_DEVICE_MODE_CHANGE_REQ,MCE_NORMAL_MODE);
+    LockInterface->asyncCall("req_device_mode_change","normal");
     //*/
 }
 
@@ -125,16 +125,16 @@ void SIMLockService::AddValidIMSI(QString imsi)
 void SIMLockService::DeviceLockModeChanged(QString mode)
 {
     qDebug() << "Device Lock Mode Changed";
-    if(mode == MCE_DEVICE_UNLOCKED)
+    if(mode == "unlocked")
 	emit DeviceUnlocked();
 }
 
 bool SIMLockService::IsLocked()
 {
-    QDBusReply<QString> reply = LockInterface->call(MCE_DEVLOCK_MODE_GET);
+    QDBusReply<QString> reply = LockInterface->call("get_devicelock_mode");
     if(!reply.isValid())
 	return false;
-    return reply.value() == MCE_DEVICE_LOCKED;
+    return reply.value() == "locked";
 }
 
 bool SIMLockService::ClearDatabase()

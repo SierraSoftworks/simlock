@@ -1,16 +1,16 @@
-Source: simlockd
-Section: user/security
+Source: simlock
+Section: user/system
 Priority: optional
 Maintainer: Benjamin Pannell <contact@sierrasoftworks.com>
 Build-Depends: debhelper (>= 5), libqt4-dev
 Standards-Version: 3.7.3
-Homepage: http://sierrasoftworks.com/simlockd
+Homepage: http://sierrasoftworks.com/simlock
 
-Package: simlockd
+Package: simlock
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 XSBC-Bugtracker: mailto:contact@sierrasoftworks.com
-XSBC-Maemo-Display-Name: SIMLockD
+XSBC-Maemo-Display-Name: SIMLock
 Description: Locks the phone if the SIM card is changed
  SIMLockd will automatically lock the phone if it detects a different SIM card being used in the phone
 XB-Maemo-Icon-26:

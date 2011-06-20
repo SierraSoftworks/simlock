@@ -10,48 +10,37 @@
 #export DH_VERBOSE=1
 
 
+APPNAME := simlock
+builddir:
+	mkdir -p builddir
 
-
-
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
-	# qmake PREFIX=/usr# Uncomment this line for use without Qt Creator
-
-	touch configure-stamp
-
+builddir/Makefile: builddir
+	cd builddir && qmake-qt4 PREFIX=/usr ../simlock.pro
 
 build: build-stamp
 
-build-stamp: configure-stamp
+build-stamp: builddir/Makefile
 	dh_testdir
-
 	# Add here commands to compile the package.
-	# $(MAKE) # Uncomment this line for use without Qt Creator
-	#docbook-to-man debian/simlock.sgml > simlock.1
-
+	cd builddir && $(MAKE)
 	touch $@
 
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp configure-stamp
-
+	rm -f build-stamp
 	# Add here commands to clean up after the build process.
-	$(MAKE) clean
+	rm -rf builddir
 
 	dh_clean
-
 install: build
 	dh_testdir
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
 
-	# Add here commands to install the package into debian/simlock.
-	$(MAKE) INSTALL_ROOT="$(CURDIR)"/debian/simlock install
-
-
+	# Add here commands to install the package into debian/your_appname
+	cd builddir && $(MAKE) INSTALL_ROOT=$(CURDIR)/debian/$(APPNAME) install
 # Build architecture-independent files here.
 binary-indep: build install
 # We have nothing to do by default.
@@ -60,29 +49,15 @@ binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs
 	dh_installdocs
 	dh_installexamples
-#	dh_install
-#	dh_installmenu
-#	dh_installdebconf
-#	dh_installlogrotate
-#	dh_installemacsen
-#	dh_installpam
-#	dh_installmime
-#	dh_python
-#	dh_installinit
-#	dh_installcron
-#	dh_installinfo
 	dh_installman
 	dh_link
-	dh_strip
+#	dh_strip --dbg-package=appname-dbg
 	dh_compress
 	dh_fixperms
-#	dh_perl
-#	dh_makeshlibs
 	dh_installdeb
-	# dh_shlibdeps # Uncomment this line for use without Qt Creator
+	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb

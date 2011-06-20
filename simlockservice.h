@@ -5,8 +5,6 @@
 #include <QObject>
 #include <QtCore>
 #include "databaseinterface.h"
-#include <mce/dbus-names.h>
-#include <mce/mode-names.h>
 
 class SIMLockService :public QObject
 {

@@ -7,11 +7,11 @@
 QT       += core
 QT	 += dbus
 QT	 += sql
-QT	 += maemo5
 
 PKGCONFIG	+= mce
 
 QT       -= gui
+QT	 -= xml
 
 TARGET = simlock
 CONFIG   += console
@@ -39,4 +39,13 @@ include(deployment.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-    simlockd
+    qtc_packaging/debian_fremantle/README \
+    qtc_packaging/debian_fremantle/postinst \
+    qtc_packaging/debian_fremantle/copyright \
+    qtc_packaging/debian_fremantle/control \
+    qtc_packaging/debian_fremantle/compat \
+    qtc_packaging/debian_fremantle/changelog \
+    simlock \
+    SIMLock.install \
+    qtc_packaging/debian_fremantle/rules.autobuilder \
+    qtc_packaging/debian_fremantle/rules
