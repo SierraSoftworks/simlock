@@ -11,9 +11,7 @@ respawn limit 2 10
 
 script
     if [ -d "/opt/simlock" ]; then
-		sleep 10
-		chmod +x "/opt/simlock/simlock"
-		exec /opt/simlock/simlock -d
+		exec simlock -d
 		initctl emit simlockdcomplete
     else
 	sleep 5

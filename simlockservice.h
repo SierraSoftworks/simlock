@@ -25,6 +25,7 @@ public:
     bool HasValidIMSI();
     bool IsLocked();
     bool ClearDatabase();
+    bool RemoveIMSI(QString imsi);
     QList<QVariant> GetValidIMSIs();
 
 private:

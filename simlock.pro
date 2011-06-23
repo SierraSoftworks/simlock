@@ -8,15 +8,11 @@ QT       += core
 QT	 += dbus
 QT	 += sql
 
-PKGCONFIG	+= mce
-
 QT       -= gui
-QT	 -= xml
 
 TARGET = simlock
 CONFIG   += console
 CONFIG   -= app_bundle
-CONFIG	 += link_pkgconfig
 
 TEMPLATE = app
 
@@ -48,4 +44,5 @@ OTHER_FILES += \
     simlock \
     SIMLock.install \
     qtc_packaging/debian_fremantle/rules.autobuilder \
-    qtc_packaging/debian_fremantle/rules
+    qtc_packaging/debian_fremantle/rules \
+    qtc_packaging/debian_fremantle/rules.repo

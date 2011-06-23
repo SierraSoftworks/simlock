@@ -1,7 +1,34 @@
-simlock (0.4.0) stable; urgency=low
+simlock (0.6.1) stable; urgency=high
+
+  * Fix crash caused by memory releases in 0.6.0
+  * Fixed a spelling error in debug output for the Daemon
+
+ -- Benjamin Pannell <contact@sierrasoftworks.com>  Wed, 22 Jun 2011 08:00:26 +0200
+
+simlock (0.6.1) stable; urgency=low
+
+  * Fixed the folder ~/simlockd being created when it wasn't needed 
+  * Rewrote help text to make it easier to read
+  * Added shortcuts for --add, --remove, --show and --clear commands
+  * Rewrote event.d script, removed chmod calls, better startup time
+  * Rewrote README file to add information about how to use SIMLock
+  * Removed unnecessary debug code from the --show command
+  * Lots of memory leaks have been fixed (wouldn't have been noticed)
+
+ -- Benjamin Pannell <contact@sierrasoftworks.com>  Wed, 22 Jun 2011 08:00:13 +0200
+
+simlock (0.6.1) stable; urgency=low
+
+  * Package is now configured to replace simlockd (<=0.3.0)
+  * Added --remove function to remove individual IMSI numbers
+  * Added --add function to add individual IMSI numbers
+
+ -- Benjamin Pannell <contact@sierrasoftworks.com>  Mon, 20 Jun 2011 17:49:21 +0200
+
+simlock (0.6.1) stable; urgency=low
 
   * Fixed an issue when running the post install script on certain devices which could cause installation to fail
     This is an attempted fix and may not solve the problem.
   * Fixed an issue with an incorrect call to "link" rather than "ln"
 
- -- Benjamin Pannell <contact@sierrasoftworks.com>  Mon, 20 Jun 2011 15:24:33 +0200
+ -- Benjamin Pannell <contact@sierrasoftworks.com>  Mon, 20 Jun 2011 17:47:54 +0200

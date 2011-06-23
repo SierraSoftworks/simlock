@@ -26,7 +26,7 @@ void DatabaseInterface::SetDatabaseFile(QFileInfo file)
 
 bool DatabaseInterface::Connect()
 {
-    QDir *databaseDir = new QDir(databaseFile.absoluteDir());
+    QDir *databaseDir = new QDir(GetDatabaseFile().absoluteDir());
 
     if(!databaseDir->exists())
 	databaseDir->mkdir(databaseDir->absolutePath());
@@ -54,7 +54,7 @@ bool DatabaseInterface::AddIMSI(QString imsi)
 {
     try
     {
-	dbConnection.exec("INSERT INTO `imsi` VALUES('" + imsi + "')");
+	dbConnection.exec("INSERT INTO `imsi` VALUES('" + imsi.replace("'","") + "')");
 
 	if(dbConnection.lastError().type() != QSqlError::NoError)
 	    return false;
@@ -70,7 +70,7 @@ bool DatabaseInterface::AddIMSI(QString imsi)
 
 bool DatabaseInterface::CheckIMSI(QString imsi)
 {
-    QSqlQuery query = dbConnection.exec("SELECT count(*) FROM `imsi` WHERE `imsi`='" + imsi + "'");
+    QSqlQuery query = dbConnection.exec("SELECT count(*) FROM `imsi` WHERE `imsi`='" + imsi.replace("'","") + "'");
     if(!query.next())
     {
 	emit InvalidIMSI();
@@ -125,4 +125,12 @@ QList<QVariant> DatabaseInterface::GetRecords()
     }
     return results;
 
+}
+
+bool DatabaseInterface::RemoveIMSI(QString imsi)
+{
+    if(!dbConnection.isOpen())
+	dbConnection.open();
+    dbConnection.exec("DELETE FROM `imsi` WHERE `imsi`='" + imsi.replace("'","") + "'");
+    return true;
 }

@@ -9,10 +9,17 @@ Homepage: http://sierrasoftworks.com/simlock
 Package: simlock
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: simlockd
+Conflicts: simlockd
+Provides: simlockd
 XSBC-Bugtracker: mailto:contact@sierrasoftworks.com
 XSBC-Maemo-Display-Name: SIMLock
 Description: Locks the phone if the SIM card is changed
- SIMLockd will automatically lock the phone if it detects a different SIM card being used in the phone
+ SIMLock will automatically lock the phone if it detects a different SIM card
+ being used in the phone. The lock code can be configured from the
+ Settings/Device Lock page and should be set prior to installing SIMLock.
+ Failure to do so may result in you being locked out of your phone and may
+ require you to flash it.
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGOfPtRkwAAACBjSFJN
  AACHDwAAjA8AAP1SAACBQAAAfXkAAOmLAAA85QAAGcxzPIV3AAAKOWlDQ1BQaG90b3Nob3AgSUND

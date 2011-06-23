@@ -45,6 +45,7 @@ public:
     void ClearDB();
     bool AddIMSI(QString imsi);
     bool CheckIMSI(QString imsi);
+    bool RemoveIMSI(QString imsi);
     bool HasRecords();
     QList<QVariant> GetRecords();
 

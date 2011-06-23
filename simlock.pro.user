@@ -156,7 +156,16 @@
       <value key="Qt4ProjectManager.MakeStep.MakeArguments" type="QString"></value>
       <value key="Qt4ProjectManager.MakeStep.MakeCommand" type="QString"></value>
      </valuemap>
-     <value key="ProjectExplorer.BuildStepList.StepsCount" type="int">2</value>
+     <valuemap key="ProjectExplorer.BuildStepList.Step.2" type="QVariantMap">
+      <value key="ProjectExplorer.ProcessStep.Arguments" type="QString">~/Desktop/Projects/MakeRepo simlock 0.6.1 ~/Desktop/Projects/SIMLock ~/Desktop/Projects/SIMLock-build-repo</value>
+      <value key="ProjectExplorer.ProcessStep.Command" type="QString">bash</value>
+      <value key="ProjectExplorer.ProcessStep.Enabled" type="bool">true</value>
+      <value key="ProjectExplorer.ProcessStep.WorkingDirectory" type="QString">%{buildDir}</value>
+      <value key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName" type="QString">Custom Process Step</value>
+      <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString"></value>
+      <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">ProjectExplorer.ProcessStep</value>
+     </valuemap>
+     <value key="ProjectExplorer.BuildStepList.StepsCount" type="int">3</value>
      <value key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName" type="QString">Build</value>
      <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Clone of Build</value>
      <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">ProjectExplorer.BuildSteps.Build</value>
@@ -177,7 +186,9 @@
     </valuemap>
     <value key="ProjectExplorer.BuildConfiguration.BuildStepListCount" type="int">2</value>
     <value key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment" type="bool">false</value>
-    <valuelist key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges" type="QVariantList"/>
+    <valuelist key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges" type="QVariantList">
+     <value type="QString">EMAIL=Benjamin Pannell &lt;contact@sierrasoftworks.com></value>
+    </valuelist>
     <value key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName" type="QString">Release</value>
     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Source Package</value>
     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.Qt4BuildConfiguration</value>
@@ -204,12 +215,14 @@
       <value key="Qt4ProjectManager.MaemoRunConfiguration.DeviceId" type="qulonglong">3</value>
       <valuelist key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedFiles" type="QVariantList">
        <value type="QString">/home/sierra/Desktop/Projects/simlock-build-maemo/simlock_0.1.0_armel.deb</value>
+       <value type="QString">/home/sierra/Desktop/Projects/simlock-build-maemo/simlock_0_6_1_armel.deb</value>
        <value type="QString">/home/sierra/Desktop/Projects/simlock-build-maemo/simlock_0.2.0_armel.deb</value>
        <value type="QString">/home/sierra/Desktop/Projects/simlock-build-maemo/simlock_0_3_0_armel.deb</value>
        <value type="QString">/home/sierra/Desktop/Projects/simlock-build-maemo/simlock_0.0.1_armel.deb</value>
       </valuelist>
       <valuelist key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts" type="QVariantList">
        <value type="QString">192.168.2.101</value>
+       <value type="QString">192.168.1.118</value>
        <value type="QString">192.168.2.101</value>
        <value type="QString">192.168.2.101</value>
        <value type="QString">192.168.2.101</value>
@@ -219,9 +232,11 @@
        <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
+       <value type="QString"></value>
       </valuelist>
       <valuelist key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes" type="QVariantList">
        <value type="QDateTime">2011-06-05T15:59:58</value>
+       <value type="QDateTime">2011-06-22T08:08:43</value>
        <value type="QDateTime">2011-06-05T20:16:45</value>
        <value type="QDateTime">2011-06-19T10:25:36</value>
        <value type="QDateTime">2011-06-05T15:45:22</value>
@@ -265,7 +280,7 @@
     <value key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName" type="QString">simlock</value>
     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString"></value>
     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">Qt4ProjectManager.MaemoRunConfiguration</value>
-    <value key="Qt4ProjectManager.MaemoRunConfiguration.Arguments" type="QString">--show</value>
+    <value key="Qt4ProjectManager.MaemoRunConfiguration.Arguments" type="QString">-d</value>
     <value key="Qt4ProjectManager.MaemoRunConfiguration.BaseEnvironmentBase" type="int">1</value>
     <valuelist key="Qt4ProjectManager.MaemoRunConfiguration.ExportedLocalDirs" type="QVariantList"/>
     <value key="Qt4ProjectManager.MaemoRunConfiguration.ProFile" type="QString">simlock.pro</value>

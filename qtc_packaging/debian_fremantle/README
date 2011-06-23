@@ -1,6 +1,35 @@
-SIMLockD
+SIMLock - A SIM based locking daemon
 ----------------------------
 
-Automatically locks the phone if the SIM card is changed. Supports multiple valid SIM cards
+Automatically locks the phone if the SIM card is changed.
+Supports multiple valid SIM cards which can be added either using the command line
+tool or by inserting them and subsequently unlocking the phone.
 
- -- Benjamin Pannell <contact@sierrasoftworks.com>  Sun, 05 Jun 2011 13:02:33 +0200
+Usage:
+    simlock [OPTIONS]
+
+Options:
+    --add -a	[IMSI]
+	Adds the specified IMSI to the database
+    --remove -r	[IMSI]
+	Removes the specified IMSI from the database
+    --show -s
+	Shows a list of all the valid IMSI numbers in the database
+    --clear -c
+	Clears the list of IMSI numbers currently in the database
+    --help -?
+	Shows the built in help page
+    -d
+	Runs the startup daemon, locking the phone if an invalid IMSI number is detected
+
+SIMLock is started automatically when the phone boots and will lock the phone if
+it detects that the inserted SIM card has been changed. Additionally it will lock
+the phone if there is no SIM card present.
+
+To disable SIMLock simply uninstall the simlock package using the built in package
+manager, or enter "sudo apt-get remove simlock" from the terminal.
+
+The lock code used by SIMLock is determined by the lock code set in Settings/Device Lock
+and should be configured prior to running or installing simlock.
+
+ -- Benjamin Pannell <contact@sierrasoftworks.com>  Sun, 21 Jun 2011 17:38:33 +0200

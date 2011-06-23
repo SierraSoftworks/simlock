@@ -5,12 +5,22 @@ using namespace std;
 
 void showHelp()
 {
-    qDebug() << "SIMLock by Sierra Softworks\n";
-    qDebug() << "simlock [OPTIONS]\n";
-    qDebug() << "  -d      | Run in Daemon Mode\n";
-    qDebug() << "  --clear | Clear the valid SIM card database\n";
-    qDebug() << "  --help  | Show this help page\n";
-    qDebug() << "  --show  | Show a list of the valid SIM cards";
+    qDebug() << "SIMLock by Sierra Softworks";
+    qDebug() << "http://sierrasoftworks.com/simlock";
+    qDebug() << "";
+    qDebug() << "simlock [OPTIONS]";
+    qDebug() << "  --add -a	    [IMSI]";
+    qDebug() << "    Adds the specified IMSI to the database";
+    qDebug() << "  --remove -r	    [IMSI]";
+    qDebug() << "    Removes the specified IMSI from the database";
+    qDebug() << "  --show -s";
+    qDebug() << "    Show a list of the valid SIM cards";
+    qDebug() << "  --clear -c";
+    qDebug() << "    Clear the valid SIM card database";
+    qDebug() << "  -d";
+    qDebug() << "    Run in Daemon Mode";
+    qDebug() << "  --help -?";
+    qDebug() << "    Show this help page";
 }
 
 int main(int argc, char *argv[])
@@ -30,14 +40,13 @@ int main(int argc, char *argv[])
 	if(arg == "-d")
 	{
 	    SIMLock service;
-	    qDebug() << "Starting SIMLockD";
+	    qDebug() << "Starting SIMLock";
 
 	    service.Run();
-
-	    qDebug() << "SIMLockD Exiting";
+	    qDebug() << "SIMLock Exiting";
 	    return 0;
 	}
-	else if(arg == "--clear")
+	else if(arg == "--clear" || arg == "-c")
 	{
 	    //Clear the SIMLock database
 	    SIMLockService service;
@@ -46,22 +55,18 @@ int main(int argc, char *argv[])
 	    service.Dispose();
 	    return 0;
 	}
-	else if(arg == "--show")
+	else if(arg == "--show" || arg == "-s")
 	{
-	    qDebug() << "Creating Service Instace";
 	    SIMLockService service;
 	    service.Initialize();
 
-	    qDebug() << "Getting IMSI numbers";
 	    QList<QVariant> records = service.GetValidIMSIs();
 
 	    service.Dispose();
 
-	    qDebug() << "Printing IMSI numbers";
 
 	    if(records.length() > 0)
 	    {
-		qDebug() << "Valid IMSI Numbers:";
 		for(int i = 0; i < records.length();i++)
 		    qDebug() << "  " << records.at(i).toString();
 	    }
@@ -72,7 +77,52 @@ int main(int argc, char *argv[])
 	    return 0;
 
 	}
-	else if(arg == "--help" || arg == "-?" || arg == "/?")
+	else if(arg == "--add" || arg == "-a")
+	{
+	    if(i == argc)
+	    {
+		qDebug() << "You must provide an IMSI number";
+		return 1;
+	    }
+	    qDebug() << "Adding IMSI Number:" << argv[i + 1];
+
+	    SIMLockService service;
+	    service.Initialize();
+	    service.AddValidIMSI(QString(argv[i + 1]));
+	    service.Dispose();
+	    qDebug() << "IMSI Added";
+	    return 0;
+	}
+	else if(arg == "--remove" || arg == "-r")
+	{
+	    if(i == argc)
+	    {
+		qDebug() << "You must provide an IMSI number";
+		return 1;
+	    }
+
+
+	    SIMLockService service;
+	    service.Initialize();
+
+	    QString imsi = QString(argv[i + 1]);
+
+	    if(!service.IsValidIMSI(imsi))
+	    {
+		qDebug() << "The provided IMSI is not in the database";
+		delete &service;
+		return 2;
+	    }
+
+	    qDebug() << "Removing IMSI from database";
+
+	    service.RemoveIMSI(imsi);
+
+	    service.Dispose();
+	    qDebug() << "IMSI Removed";
+	    return 0;
+	}
+	else if(arg == "--help" || arg == "-?")
 	{
 	    showHelp();
 	    return 0;

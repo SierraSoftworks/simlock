@@ -7,7 +7,10 @@ SIMLockService::SIMLockService()
 
 SIMLockService::~SIMLockService()
 {
-    //Dispose();
+    Dispose();
+    delete dbInterface;
+    delete LockInterface;
+    delete SIMInterface;
 }
 
 void SIMLockService::Initialize()
@@ -26,7 +29,7 @@ void SIMLockService::Initialize()
     if(!SIMInterface->isValid())
 	qDebug() << "SIMInterface unavailable";
     if(!LockInterface->isValid())
-	qDebug() << "SIMInterface unavailable";
+	qDebug() << "LockInterface unavailable";
 }
 
 void SIMLockService::Dispose()
@@ -49,7 +52,9 @@ QString SIMLockService::GetIMSI()
 
     qDebug() << "Current IMSI:" << reply.value();
     emit IMSIRetrieved(reply.value());
-    return reply.value();
+
+    QString result = reply.value();
+    return result;
 }
 
 void SIMLockService::LockPhone()
@@ -78,6 +83,7 @@ void SIMLockService::LockPhone()
 	    qDebug() << "Phone locked";
 	else
 	    qDebug() << "Phone failed to lock";
+
 
 }
 
@@ -132,9 +138,11 @@ void SIMLockService::DeviceLockModeChanged(QString mode)
 bool SIMLockService::IsLocked()
 {
     QDBusReply<QString> reply = LockInterface->call("get_devicelock_mode");
-    if(!reply.isValid())
+    if(!reply.isValid() || reply.value() != "locked")
+    {
 	return false;
-    return reply.value() == "locked";
+    }
+    return true;
 }
 
 bool SIMLockService::ClearDatabase()
@@ -146,4 +154,9 @@ bool SIMLockService::ClearDatabase()
 QList<QVariant> SIMLockService::GetValidIMSIs()
 {
     return dbInterface->GetRecords();
+}
+
+bool SIMLockService::RemoveIMSI(QString imsi)
+{
+    return dbInterface->RemoveIMSI(imsi);
 }

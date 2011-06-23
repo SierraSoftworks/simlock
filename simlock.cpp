@@ -8,7 +8,7 @@ SIMLock::SIMLock()
 
 SIMLock::~SIMLock()
 {
-
+    simlock.Dispose();
 }
 
 void SIMLock::Run()
@@ -50,6 +50,4 @@ void SIMLock::Run()
     {
 	qDebug() << "IMSI is Valid";
     }
-
-    simlock.Dispose();
 }
